@@ -1,6 +1,8 @@
 const canvasSketch = require("canvas-sketch");
 const random = require("canvas-sketch-util/random");
 const palettes = require("nice-color-palettes");
+const eases = require("eases");
+const BezierEasing = require("bezier-easing");
 
 // Ensure ThreeJS is in global scope for the 'examples/'
 global.THREE = require("three");
@@ -69,6 +71,8 @@ const sketch = ({ context }) => {
   light.position.set(0, 0, 4);
   scene.add(light);
 
+  const easeFn = BezierEasing(0.67, 0.03, 0.29, 0.99);
+
   // draw each frame
   return {
     // Handle resize events here
@@ -100,7 +104,8 @@ const sketch = ({ context }) => {
     },
     // And render events here
     render({ playhead }) {
-      scene.rotation.z = Math.sin(playhead * Math.PI) * 2;
+      const t = Math.sin(playhead * Math.PI) * 2;
+      scene.rotation.z = easeFn(t);
       renderer.render(scene, camera);
     },
     // Dispose of WebGL context (optional)
