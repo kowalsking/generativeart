@@ -1,7 +1,7 @@
-import canvasSketch from "canvas-sketch";
-import { lerp } from "canvas-sketch-util/math";
-import random from "canvas-sketch-util/random";
-import palettes from "nice-color-palettes";
+import canvasSketch from "./canvas-sketch.js";
+import { lerp } from "./canvas-sketch-util/math";
+import random from "./canvas-sketch-util/random";
+import palettes from "./nice-color-palettes";
 
 // Sketch parameters
 const settings = {
